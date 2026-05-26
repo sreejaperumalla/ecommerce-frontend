@@ -1,0 +1,10 @@
+/* App.css - Cleaned up to avoid conflicts with premium UI styles */
+.app-shell {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.app-main {
+  flex: 1;
+}

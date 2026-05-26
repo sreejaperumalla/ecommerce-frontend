@@ -1,0 +1,363 @@
+.order-success-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 60px 20px;
+  animation: fadeIn 0.5s ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Success Header */
+.success-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.success-icon-wrapper {
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.success-icon {
+  width: 80px;
+  height: 80px;
+  background-color: #dcfce7; /* Light green */
+  color: #22c55e; /* Green */
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  box-shadow: 0 8px 24px rgba(34, 197, 94, 0.2);
+}
+
+.success-icon svg {
+  font-size: 2.5rem;
+}
+
+/* Very simple mock confetti dots using pseudo elements */
+.success-icon-wrapper::before,
+.success-icon-wrapper::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background-image: 
+    radial-gradient(circle at 10% 20%, #818cf8 4px, transparent 4px),
+    radial-gradient(circle at 90% 10%, #facc15 3px, transparent 3px),
+    radial-gradient(circle at 80% 80%, #f472b6 4px, transparent 4px),
+    radial-gradient(circle at 20% 90%, #60a5fa 3px, transparent 3px);
+  animation: scatter 2s ease-out infinite alternate;
+  opacity: 0.6;
+  transform: scale(1.5);
+}
+
+.success-icon-wrapper::after {
+  transform: scale(2) rotate(45deg);
+  opacity: 0.4;
+  animation-delay: 1s;
+}
+
+@keyframes scatter {
+  0% { transform: scale(1.5) rotate(0deg); }
+  100% { transform: scale(1.6) rotate(5deg); }
+}
+
+.success-header h1 {
+  font-size: 2.25rem;
+  color: var(--text);
+  margin-bottom: 12px;
+  font-weight: 700;
+}
+
+.success-header p {
+  color: var(--text-dim);
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+/* Order Info Bar */
+.order-info-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 24px 40px;
+  margin-bottom: 48px;
+  border-radius: 16px;
+}
+
+.info-block {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 1;
+}
+
+.info-block:not(:first-child) {
+  justify-content: center;
+}
+
+.info-block:last-child {
+  justify-content: flex-end;
+}
+
+.info-icon {
+  background: rgba(99, 102, 241, 0.1);
+  color: var(--accent);
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+}
+
+.info-label {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-bottom: 4px;
+}
+
+.info-value {
+  display: block;
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+}
+
+.total-amount-highlight {
+  color: var(--accent);
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.info-divider {
+  width: 1px;
+  height: 40px;
+  background: var(--border);
+}
+
+@media (max-width: 768px) {
+  .order-info-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding: 24px;
+  }
+  .info-block:not(:first-child),
+  .info-block:last-child {
+    justify-content: flex-start;
+  }
+  .info-divider {
+    display: none;
+  }
+}
+
+/* Next Steps */
+.next-steps-section {
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.next-steps-section h3,
+.order-summary-section h3 {
+  font-size: 1.25rem;
+  color: var(--text);
+  margin-bottom: 24px;
+  font-weight: 600;
+}
+
+.steps-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.step-card {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+  transition: all 0.3s ease;
+}
+
+.step-card:hover {
+  box-shadow: 0 8px 24px rgba(0,0,0,0.04);
+  transform: translateY(-2px);
+}
+
+.step-icon {
+  padding: 12px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.step-icon.confirmed {
+  background: #f3e8ff; /* purple-100 */
+  color: #a855f7; /* purple-500 */
+}
+
+.step-icon.shipped {
+  background: #e0e7ff; /* indigo-100 */
+  color: #6366f1; /* indigo-500 */
+}
+
+.step-icon.delivered {
+  background: #f1f5f9; /* slate-100 */
+  color: #64748b; /* slate-500 */
+}
+
+.step-text h4 {
+  font-size: 0.95rem;
+  color: var(--text);
+  margin-bottom: 6px;
+  font-weight: 600;
+}
+
+.step-text p {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .steps-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Order Summary */
+.order-summary-section {
+  width: 100%;
+  margin-bottom: 48px;
+}
+
+.success-summary-card {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 40px;
+  padding: 32px;
+}
+
+@media (max-width: 768px) {
+  .success-summary-card {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+
+.summary-products {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.summary-product-item {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.summary-product-item img {
+  width: 80px;
+  height: 80px;
+  border-radius: 12px;
+  object-fit: cover;
+  background: var(--bg-body);
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.product-details h4 {
+  font-size: 1.05rem;
+  color: var(--text);
+  font-weight: 600;
+  margin: 0;
+}
+
+.product-details .qty {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.product-details .price {
+  font-size: 0.95rem;
+  color: var(--text);
+  font-weight: 500;
+}
+
+.summary-totals {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 14px 32px;
+  min-width: 200px;
+  font-size: 1rem;
+}
+
+.outline-button {
+  background: transparent;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-decoration: none;
+}
+
+.outline-button:hover {
+  background: rgba(99, 102, 241, 0.05);
+}
+
+@media (max-width: 600px) {
+  .action-buttons {
+    flex-direction: column;
+    width: 100%;
+  }
+  .action-btn {
+    width: 100%;
+  }
+}
+
+.footer-note {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  text-align: center;
+}
+
+.footer-note strong {
+  color: var(--text);
+}
