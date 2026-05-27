@@ -224,11 +224,11 @@ const OrderDetails = () => {
                   <LocationOnOutlined fontSize="small" /> Shipping Address
                 </h3>
                 <div className="address-content">
-                  <strong>Perumalla Sreeja</strong>
+                  <strong>Enter full name</strong>
                   <p>+91 98765 43210</p>
-                  <p style={{marginTop: '12px'}}>Hitech City, Hyderabad</p>
-                  <p>Telangana - 500081</p>
-                  <p>India</p>
+                  <p style={{marginTop: '12px'}}>Landmark</p>
+                  <p>State</p>
+                  <p>Country</p>
                 </div>
               </div>
 

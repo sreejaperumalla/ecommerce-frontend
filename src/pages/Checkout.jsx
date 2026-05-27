@@ -150,7 +150,7 @@ const Checkout = () => {
                 <label>Full Name</label>
                 <div className="input-with-icon">
                   <span className="input-icon user-icon"></span>
-                  <input type="text" name="fullName" placeholder="Perumalla Sreeja" value={formData.fullName} onChange={handleInputChange} />
+                  <input type="text" name="fullName" placeholder="Enter your name" value={formData.fullName} onChange={handleInputChange} />
                 </div>
               </div>
               <div className="form-group">
@@ -164,21 +164,21 @@ const Checkout = () => {
                 <label>Address Line 1</label>
                 <div className="input-with-icon">
                   <span className="input-icon home-icon"></span>
-                  <input type="text" name="address1" placeholder="Hitech City, Hyderabad" value={formData.address1} onChange={handleInputChange} />
+                  <input type="text" name="address1" placeholder="Enter address line 1" value={formData.address1} onChange={handleInputChange} />
                 </div>
               </div>
               <div className="form-group full-width">
                 <label>Address Line 2 (Optional)</label>
                 <div className="input-with-icon">
                   <span className="input-icon building-icon"></span>
-                  <input type="text" name="address2" placeholder="Apartment, suite, unit, etc." value={formData.address2} onChange={handleInputChange} />
+                  <input type="text" name="address2" placeholder="Enter address line 2" value={formData.address2} onChange={handleInputChange} />
                 </div>
               </div>
               <div className="form-group">
                 <label>City</label>
                 <div className="input-with-icon">
                   <span className="input-icon city-icon"></span>
-                  <input type="text" name="city" placeholder="Hyderabad" value={formData.city} onChange={handleInputChange} />
+                  <input type="text" name="city" placeholder="Enter city" value={formData.city} onChange={handleInputChange} />
                 </div>
               </div>
               <div className="form-group">
@@ -198,7 +198,7 @@ const Checkout = () => {
                 <label>Pincode</label>
                 <div className="input-with-icon">
                   <span className="input-icon pin-icon"></span>
-                  <input type="text" name="pincode" placeholder="500081" value={formData.pincode} onChange={handleInputChange} />
+                  <input type="text" name="pincode" placeholder="Enter pincode" value={formData.pincode} onChange={handleInputChange} />
                 </div>
               </div>
             </div>
