@@ -1,7 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { LocalMallOutlined } from '@mui/icons-material';
-import { addToCart } from '../store/cartSlice';
+import { LocalMallOutlined, Add, DeleteOutlined } from '@mui/icons-material';
+import { addToCart, removeFromCart, updateQuantity } from '../store/cartSlice';
 import './ProductCard.css';
 
 const ProductCard = ({ product }) => {
@@ -9,6 +9,9 @@ const ProductCard = ({ product }) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { isAuthenticated } = useSelector((state) => state.auth);
+  const cartItems = useSelector((state) => state.cart.items);
+  const existingCartItem = cartItems.find((item) => item.id === product.id);
+  const quantity = existingCartItem?.quantity || 0;
 
   const handleAddToCart = () => {
     if (!isAuthenticated) {
@@ -16,6 +19,22 @@ const ProductCard = ({ product }) => {
       return;
     }
     dispatch(addToCart(product));
+  };
+
+  const handleRemove = () => {
+    dispatch(removeFromCart(product.id));
+  };
+
+  const handleIncrease = () => {
+    dispatch(addToCart(product));
+  };
+
+  const handleDecrease = () => {
+    if (quantity === 1) {
+      dispatch(removeFromCart(product.id));
+    } else {
+      dispatch(updateQuantity({ id: product.id, quantity: quantity - 1 }));
+    }
   };
 
   return (
@@ -50,30 +69,45 @@ const ProductCard = ({ product }) => {
 }
 </div>
       <div className="product-footer">
-        <button
-  onClick={handleAddToCart}
-  disabled={product.stock === 0}
-  className={
-    product.stock === 0
-      ? "disabled-btn"
-      : "add-to-cart-btn"
-  }
-  style={{
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    gap: '8px'
-  }}
->
-  <LocalMallOutlined fontSize="small" />
-
-  {
-    product.stock === 0
-      ? "Out Of Stock"
-      : "Add to Cart"
-  }
-
-</button>
+        {product.stock === 0 ? (
+          <button className="disabled-btn" disabled>
+            <LocalMallOutlined fontSize="small" />
+            Out Of Stock
+          </button>
+        ) : existingCartItem ? (
+          <div className="cart-mini-control">
+            <button
+              aria-label="Remove item"
+              className="cart-icon-btn"
+              onClick={handleRemove}
+            >
+              <DeleteOutlined fontSize="small" />
+            </button>
+            <button
+              aria-label="Decrease quantity"
+              className="cart-icon-btn"
+              onClick={handleDecrease}
+            >
+              -
+            </button>
+            <div className="cart-qty-chip">{quantity}</div>
+            <button
+              aria-label="Increase quantity"
+              className="cart-icon-btn cart-add-btn"
+              onClick={handleIncrease}
+            >
+              <Add fontSize="small" />
+            </button>
+          </div>
+        ) : (
+          <button
+            onClick={handleAddToCart}
+            className="add-to-cart-btn"
+          >
+            <LocalMallOutlined fontSize="small" />
+            Add to Cart
+          </button>
+        )}
       </div>
     </div>
   );

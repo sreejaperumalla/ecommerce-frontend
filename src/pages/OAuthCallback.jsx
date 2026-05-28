@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { googleLoginSuccess } from '../store/authSlice';
+import Skeleton from '../components/Skeleton';
 
 const OAuthCallback = () => {
   const [searchParams] = useSearchParams();
@@ -41,7 +42,15 @@ const OAuthCallback = () => {
 
   return (
     <div className="page" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '80vh' }}>
-      <h2>Authenticating...</h2>
+      <div style={{ width: '360px', textAlign: 'center' }}>
+        <h2>Authenticating...</h2>
+        <div style={{ marginTop: '28px', display: 'grid', gap: '14px' }}>
+          <Skeleton width="100%" height="16px" borderRadius="12px" />
+          <Skeleton width="100%" height="16px" borderRadius="12px" />
+          <Skeleton width="90%" height="16px" borderRadius="12px" />
+          <Skeleton width="100%" height="48px" borderRadius="14px" />
+        </div>
+      </div>
     </div>
   );
 };
