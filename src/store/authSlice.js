@@ -53,19 +53,43 @@ export const loginAdmin = createAsyncThunk(
 
     try {
 
-      if (
-        username === "admin" &&
-        password === "admin123"
-      ) {
+      const response = await fetch(
 
-        return {
-          username,
-          isAdmin: true
-        };
+        'https://e-commerce-production-68a9.up.railway.app/admin/login',
+
+        {
+          method: 'POST',
+
+          headers: {
+            'Content-Type': 'application/json'
+          },
+
+          body: JSON.stringify({
+            username,
+            password
+          }),
+
+        }
+
+      );
+
+      if (!response.ok) {
+
+        throw new Error('Admin login failed');
 
       }
 
-      throw new Error("Invalid admin credentials");
+      const data = await response.json();
+
+      return {
+
+        username: data.username,
+
+        isAdmin: true,
+
+        token: data.token
+
+      };
 
     } catch (error) {
 
@@ -74,6 +98,7 @@ export const loginAdmin = createAsyncThunk(
     }
 
   }
+
 );
 
 const authSlice = createSlice({
@@ -129,6 +154,10 @@ const authSlice = createSlice({
           username: action.payload.username,
           isAdmin: true
         }));
+        localStorage.setItem(
+          'token',
+          action.payload.token
+        );
       })
       .addCase(loginAdmin.rejected, (state, action) => {
         state.loading = false;
